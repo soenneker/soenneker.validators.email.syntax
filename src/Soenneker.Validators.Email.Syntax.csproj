@@ -40,6 +40,6 @@
 
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
 
-        <PackageReference Include="Soenneker.Validators.Validator" Version="2.0.6" />
+        <PackageReference Include="Soenneker.Validators.Validator" Version="2.1.4" />
     </ItemGroup>
 </Project>
