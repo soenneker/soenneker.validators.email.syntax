@@ -8,5 +8,5 @@
 ## Installation
 
 ```
-Install-Package Soenneker.Validators.Email.Syntax
+dotnet add package Soenneker.Validators.Email.Syntax
 ```
