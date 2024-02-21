@@ -7,7 +7,7 @@ namespace Soenneker.Validators.Email.Syntax;
 ///<inheritdoc cref="IEmailSyntaxValidator"/>
 public class EmailSyntaxValidator : Validator.Validator, IEmailSyntaxValidator
 {
-    public EmailSyntaxValidator(ILogger<Validator.Validator> logger) : base(logger)
+    public EmailSyntaxValidator(ILogger<EmailSyntaxValidator> logger) : base(logger)
     {
     }
 
