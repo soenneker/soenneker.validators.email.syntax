@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\src\Soenneker.Validators.Email.Syntax.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Validators.Email.Syntax.csproj" />
     </ItemGroup>
 
 </Project>
