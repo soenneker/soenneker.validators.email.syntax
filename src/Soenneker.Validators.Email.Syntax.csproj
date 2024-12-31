@@ -40,6 +40,6 @@
 
         
 
-        <PackageReference Include="Soenneker.Validators.Validator" Version="3.0.457" />
+        <PackageReference Include="Soenneker.Validators.Validator" Version="3.0.458" />
     </ItemGroup>
 </Project>
