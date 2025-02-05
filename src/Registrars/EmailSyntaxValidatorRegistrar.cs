@@ -12,16 +12,20 @@ public static class EmailSyntaxValidatorRegistrar
     /// <summary>
     /// Adds <see cref="IEmailSyntaxValidator"/> as a singleton service.
     /// </summary>
-    public static void AddEmailSyntaxValidatorAsSingleton(this IServiceCollection services)
+    public static IServiceCollection AddEmailSyntaxValidatorAsSingleton(this IServiceCollection services)
     {
         services.TryAddSingleton<IEmailSyntaxValidator, EmailSyntaxValidator>();
+
+        return services;
     }
 
     /// <summary>
     /// Adds <see cref="IEmailSyntaxValidator"/> as a scoped service. <para/>
     /// </summary>
-    public static void AddEmailSyntaxValidatorAsScoped(this IServiceCollection services)
+    public static IServiceCollection AddEmailSyntaxValidatorAsScoped(this IServiceCollection services)
     {
         services.TryAddScoped<IEmailSyntaxValidator, EmailSyntaxValidator>();
+
+        return services;
     }
 }
