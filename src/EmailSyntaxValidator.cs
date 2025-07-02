@@ -5,7 +5,7 @@ using Soenneker.Validators.Email.Syntax.Abstract;
 namespace Soenneker.Validators.Email.Syntax;
 
 ///<inheritdoc cref="IEmailSyntaxValidator"/>
-public class EmailSyntaxValidator : Validator.Validator, IEmailSyntaxValidator
+public sealed class EmailSyntaxValidator : Validator.Validator, IEmailSyntaxValidator
 {
     public EmailSyntaxValidator(ILogger<EmailSyntaxValidator> logger) : base(logger)
     {
