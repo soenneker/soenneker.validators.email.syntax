@@ -1,21 +1,20 @@
 using Soenneker.Validators.Email.Syntax.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 
 namespace Soenneker.Validators.Email.Syntax.Tests;
 
-[Collection("Collection")]
-public class EmailSyntaxValidatorTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class EmailSyntaxValidatorTests : HostedUnitTest
 {
     private readonly IEmailSyntaxValidator _util;
 
-    public EmailSyntaxValidatorTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public EmailSyntaxValidatorTests(Host host) : base(host)
     {
         _util = Resolve<IEmailSyntaxValidator>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
