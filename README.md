@@ -5,7 +5,7 @@
 
 # Soenneker.Validators.Email.Syntax
 
-A validation module for checking email syntax.
+Checks email-address syntax through the `EmailValidation` parser, with controls for international addresses and top-level domains.
 
 ## Install
 
@@ -13,32 +13,46 @@ A validation module for checking email syntax.
 dotnet add package Soenneker.Validators.Email.Syntax
 ```
 
-## Quick start
+## Registration
 
 ```csharp
 using Soenneker.Validators.Email.Syntax.Registrars;
 using Microsoft.Extensions.DependencyInjection;
 
-var services = new ServiceCollection();
-var result = services.AddEmailSyntaxValidatorAsSingleton();
+services.AddEmailSyntaxValidatorAsSingleton();
 ```
 
-Adds `IEmailSyntaxValidator` as a singleton service.
+The validator is stateless. Singleton registration is appropriate for most applications; `AddEmailSyntaxValidatorAsScoped()` is also available.
 
-## What you get
+## Usage
 
-- `IEmailSyntaxValidator` — A validation module for checking email syntax.
-- `EmailSyntaxValidatorRegistrar` — A validation module checking if a given email's domain is disposable/temporary, updated daily (if available).
+```csharp
+using Soenneker.Validators.Email.Syntax.Abstract;
 
-## API at a glance
+bool valid = validator.Validate("person@example.com");
+```
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `IEmailSyntaxValidator.Validate(email, allowInternational, allowTopLevelDomains, logOnInvalid)` | Validate the specified email address for syntax. | `true` if the email address is valid; otherwise, `false`. |
-| `EmailSyntaxValidatorRegistrar.AddEmailSyntaxValidatorAsSingleton(services)` | Adds `IEmailSyntaxValidator` as a singleton service. | The same service collection, so additional registrations can be chained. |
-| `EmailSyntaxValidatorRegistrar.AddEmailSyntaxValidatorAsScoped(services)` | Adds `IEmailSyntaxValidator` as a scoped service. | The same service collection, so additional registrations can be chained. |
+Defaults are:
 
-## Important behavior
+- `allowInternational: true`
+- `allowTopLevelDomains: false`
+- `logOnInvalid: false`
 
-- `IEmailSyntaxValidator.Validate(email, allowInternational, allowTopLevelDomains, logOnInvalid)`: Validates the syntax of an email address. If `allowInternational` is `true`, then the validator will use the newer International Email standards for validating the email address.
-- `IEmailSyntaxValidator.Validate(email, allowInternational, allowTopLevelDomains, logOnInvalid)`: `email` is `null`.
+Enable top-level-domain addresses when inputs such as `postmaster@dk` should be accepted:
+
+```csharp
+bool valid = validator.Validate(
+    "postmaster@dk",
+    allowInternational: true,
+    allowTopLevelDomains: true);
+```
+
+Set `allowInternational: false` when international characters in the address should be rejected.
+
+## Failure and logging behavior
+
+Invalid syntax returns `false`. A null input throws `ArgumentNullException` from the underlying parser.
+
+When `logOnInvalid` is true, the full rejected email address is written at debug level. Email addresses are personal data in many environments; keep this disabled unless that log content is acceptable and protected.
+
+Syntax validation does not prove that the domain exists, publishes mail records, that the mailbox exists, or that the address belongs to the user. Combine it with the appropriate domain checks and verification flow for those requirements.

@@ -21,7 +21,7 @@ public interface IEmailSyntaxValidator : IValidator
     /// <param name="email">An email address.</param>
     /// <param name="allowInternational"><c>true</c> if the validator should allow international characters; otherwise, <c>false</c>.</param>
     /// <param name="allowTopLevelDomains"><c>true</c> if the validator should allow addresses at top-level domains; otherwise, <c>false</c>.</param>
-    /// <param name="logOnInvalid"></param>
+    /// <param name="logOnInvalid">Whether to write the rejected email address to debug logs.</param>
     /// <exception cref="System.ArgumentNullException">
     /// <paramref name="email"/> is <c>null</c>.
     /// </exception>
