@@ -40,6 +40,6 @@
         <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
         <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
         <PackageReference Include="EmailValidation" Version="1.4.0" />
-        <PackageReference Include="Soenneker.Validators.Validator" Version="4.0.737" />
+        <PackageReference Include="Soenneker.Validators.Validator" Version="4.0.738" />
     </ItemGroup>
 </Project>
